@@ -1,0 +1,25 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <img src="../../assets/download.png" alt="Smiley face" height="42" width="42">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/home">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item" *ngIf="mostrarMenu">
+        <a class="nav-link" routerLink="/usuario" >Usuario</a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" routerLink="/login">Login</a>
+      </li> -->
+    </ul>       
+
+    <app-blucake-login [logarDeslogar] = "!mostrarMenu"></app-blucake-login>
+
+
+
+  </div>
+</nav>

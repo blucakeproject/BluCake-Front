@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Email</th>
+                </tr>
+            </thead>
+    
+            <tbody>
+                <ng-template ngFor let-xb [ngForOf]="records">
+                    <tr (click)="linhaSelecionada(xb)">
+                        <td scope="row">{{xb.id}}</td>
+                        <td>{{ xb.nome }}</td>
+                        <td>{{ xb.email }}</td>                    
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
