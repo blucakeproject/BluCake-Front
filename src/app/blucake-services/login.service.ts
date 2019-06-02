@@ -25,10 +25,11 @@ export class LoginService {
     );
   }
 
-  successfulLogin(token: string) {
+  successfulLogin(ret) {
     const user: LocalUser = {
-      token: token,
-      email: ''
+      token: ret.data.token,
+      email: '',
+      usuario: ret.usuario
     };
     this.storageService.setLocalUser(user);
     this.usuarioLogado.emit(true);
@@ -37,7 +38,8 @@ export class LoginService {
   noSuccessfulLogin() {
     const user: LocalUser = {
       token: '',
-      email: ''
+      email: '',
+      usuario: ''
     };
     this.storageService.setLocalUser(null);
     this.usuarioLogado.emit(false);

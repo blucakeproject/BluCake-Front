@@ -1,3 +1,4 @@
+import { IngredienteService } from './blucake-services/ingredientes.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -17,6 +18,10 @@ import { AuthGuard } from './guard/auth.guard';
 import { UsuarioService } from './blucake-services/usuario.service';
 import { AuthInterceptor } from './interceptors.ts/auht.interceptors';
 import { HomeService } from './blucake-services/home.service';
+import { BlucakeReceitasComponent } from './blucake-receitas/blucake-receitas.component';
+import { BlucakeIngredientesComponent } from './blucake-ingredientes/blucake-ingredientes.component';
+import { IngredienteDetalheComponent } from './blucake-ingredientes/ingrediente-detalhe/ingrediente-detalhe.component';
+import { BluCakeService } from './blucake-services/blucake.service';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,10 @@ import { HomeService } from './blucake-services/home.service';
     BlucakeHomeComponent,
     BlucakeLoginComponent,
     BlucakeUsuarioComponent,
-    BlucakeNavbarComponent
+    BlucakeNavbarComponent,
+    BlucakeReceitasComponent,
+    BlucakeIngredientesComponent,
+    IngredienteDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +46,9 @@ import { HomeService } from './blucake-services/home.service';
               UsuarioService,
               AuthGuard,
               { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-              HomeService
+              HomeService,
+              IngredienteService,
+              BluCakeService
             ],
   bootstrap: [AppComponent]
 })

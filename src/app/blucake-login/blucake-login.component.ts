@@ -55,13 +55,12 @@ export class BlucakeLoginComponent implements OnInit {
 
     this.loginServie.authenticate(this.creds).subscribe(response => {
       const aux = JSON.parse(response.body);
-      this.loginServie.successfulLogin(aux.data.token);
+      this.loginServie.successfulLogin(aux);
     }, error => {
       this.loginServie.noSuccessfulLogin();
       this.showError();
       console.log(error);
     });
-
     console.log(this.logarDeslogar);
   }
 
@@ -73,5 +72,4 @@ export class BlucakeLoginComponent implements OnInit {
     this.loginServie.noSuccessfulLogin();
     this.router.navigate(['/home']);
   }
-
 }

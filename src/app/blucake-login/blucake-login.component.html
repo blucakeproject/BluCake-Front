@@ -1,0 +1,81 @@
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <form form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+                <div class="modal-body">
+
+                    <div>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" class="active">
+                                <a href="#login" aria-controls="login" role="tab" data-toggle="tab">Entrar</a>
+                            </li>
+                            <li role="presentation">
+                                <a href="#register" aria-controls="register" role="tab"
+                                    data-toggle="tab">Registrar-se</a>
+                            </li>
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active" id="login">
+
+                                <div style="padding: 10px; padding-top: 20px;">
+                                    <p>Entrar com e-mail e senha</p>
+                                    <form [formGroup]="formulario" >
+                                        <div class="form-group">
+                                            <label for="txtLogin" class="control-label"><i class="fa fa-envelope"></i>
+                                                E-mail</label>
+                                            <input type="text" class="form-control" id="txtLogin" required="required"
+                                                placeholder="confeiteiro@exemplo.com" formControlName="email">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtSenha" class="control-label"><i class="fa fa-key"></i>
+                                                Senha</label>
+                                            <input type="password" class="form-control" id="txtSenha"
+                                                formControlName="senha">
+                                        </div>
+                                        <div class="form-group">
+                                            <a href="#">Esqueci minha senha</a>
+                                        </div>
+                                    </form>
+                                </div>
+
+
+                            </div>
+                            <div role="tabpanel" class="tab-pane" id="register">
+
+                                <div style="padding: 10px; padding-top: 20px;">
+                                    <p>Solicite acesso aos administradores do BluCake. Basta enviar seu nome e seu
+                                        e-mail para entrarmos
+                                        em contato.</p>
+
+                                    <div class="form-group">
+                                        <label for="txtEmail" class="control-label"><i class="fa fa-envelope"></i>
+                                            E-mail</label>
+                                        <input type="text" class="form-control" id="txtEmail" required="required"
+                                            placeholder="seuemail@exemplo.com">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="txtSenha" class="control-label"><i class="fa fa-key"></i>
+                                            Senha</label>
+                                        <input type="email" class="form-control" id="txtSenha" required="required">
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-primary" type="submit" data-dismiss="modal" (click)='onSubmit()'>Enviar <i class="fa fa-paper-plane" ></i></button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

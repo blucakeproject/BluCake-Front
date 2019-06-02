@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="table-responsive">
+
+        <button (click)= "addIngrediente()">Adicionar</button>
+        <button (click)= "removerIngrediente()">Remover</button>
+        <button (click)= "visualizarIngrediente($event, registroSelecionado)">Visualizar</button>
+
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Descrição</th>                  
+              </tr>
+          </thead>
+  
+          <tbody>
+              <ng-template ngFor let-xb [ngForOf]="records">
+                  <tr (click)="linhaSelecionada(xb)">
+                      <td id="xb.id" scope="row">{{xb.id}}</td>
+                      <td>{{ xb.nome }}</td>                                   
+                  </tr>
+              </ng-template>
+          </tbody>
+      </table>
+  </div>
+</div>

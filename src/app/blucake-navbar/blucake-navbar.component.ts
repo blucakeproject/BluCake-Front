@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../blucake-services/login.service';
 import { StorageService } from '../blucake-services/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blucake-navbar',
@@ -12,7 +13,8 @@ export class BlucakeNavbarComponent implements OnInit {
   mostrarMenu: boolean;
 
   constructor(private loginServie: LoginService,
-              private storageService: StorageService) { }
+              private storageService: StorageService,
+              private router: Router) { }
 
   ngOnInit() {
 
@@ -24,5 +26,10 @@ export class BlucakeNavbarComponent implements OnInit {
     this.loginServie.usuarioLogado.subscribe(retorno => {
       this.mostrarMenu = retorno;
     });
+  }
+
+  deslogar() {
+    this.loginServie.noSuccessfulLogin();
+    this.router.navigate(['/home']);
   }
 }
