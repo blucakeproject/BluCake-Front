@@ -22,6 +22,9 @@ import { BlucakeReceitasComponent } from './blucake-receitas/blucake-receitas.co
 import { BlucakeIngredientesComponent } from './blucake-ingredientes/blucake-ingredientes.component';
 import { IngredienteDetalheComponent } from './blucake-ingredientes/ingrediente-detalhe/ingrediente-detalhe.component';
 import { BluCakeService } from './blucake-services/blucake.service';
+import { BlucakeHomeDetalheComponent } from './blucake-home/blucake-home-detalhe/blucake-home-detalhe.component';
+import { EnviarEmailService } from './blucake-services/enviar-email';
+import { MessageService } from './blucake-services/MessageService';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { BluCakeService } from './blucake-services/blucake.service';
     BlucakeNavbarComponent,
     BlucakeReceitasComponent,
     BlucakeIngredientesComponent,
-    IngredienteDetalheComponent
+    IngredienteDetalheComponent,
+    BlucakeHomeDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,9 @@ import { BluCakeService } from './blucake-services/blucake.service';
               { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
               HomeService,
               IngredienteService,
-              BluCakeService
+              BluCakeService,
+              EnviarEmailService,
+              MessageService
             ],
   bootstrap: [AppComponent]
 })

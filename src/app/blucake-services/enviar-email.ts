@@ -3,16 +3,17 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from '../blucake-models/responseDTO';
 import { API_CONFIG } from '../config/api.config';
+import { UsuarioDTO } from '../blucake-models/usuarioDTO';
+
 
 @Injectable()
-export class HomeService {
+export class EnviarEmailService {
 
 
     constructor(private http: HttpClient) { }
 
-    buscarTodosHome(): Observable<ResponseDTO> {
-        return this.http.get<ResponseDTO>(
-            `${API_CONFIG.baseUrl}/receitas`);
-    }
 
+    EnviarEmail(user: any): Observable<ResponseDTO> {
+        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/enviaEmail`, user);
+    }
 }

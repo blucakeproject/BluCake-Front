@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HomeService } from '../blucake-services/home.service';
+import { BluCakeService } from '../blucake-services/blucake.service';
+import { MessageService } from '../blucake-services/MessageService';
 
 @Component({
   selector: 'app-blucake-home',
@@ -10,7 +12,9 @@ export class BlucakeHomeComponent implements OnInit {
 
   records;
 
-  constructor(private homeService: HomeService) { }
+  constructor(private homeService: HomeService,
+              private bluCakeService: BluCakeService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
     this.ativarTabela();
@@ -20,6 +24,11 @@ export class BlucakeHomeComponent implements OnInit {
     this.homeService.buscarTodosHome().subscribe(res => {
       this.records = res.data;
     });
+  }
+
+  boloSelecionado(rec) {
+    this.messageService.sendMessage(rec);
+    this.bluCakeService.setValue(rec);
   }
 
 }

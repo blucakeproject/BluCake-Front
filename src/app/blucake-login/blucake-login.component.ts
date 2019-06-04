@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from '../blucake-services/login.service';
 import { UsuarioDTO } from '../blucake-models/usuarioDTO';
+import { EnviarEmailService } from '../blucake-services/enviar-email';
 
 @Component({
   selector: 'app-blucake-login',
@@ -14,6 +15,7 @@ export class BlucakeLoginComponent implements OnInit {
   @Input() logarDeslogar: boolean;
 
   formulario: FormGroup;
+  formularioRegistro: FormGroup;
 
   creds: UsuarioDTO = {
     id: '',
@@ -40,13 +42,20 @@ export class BlucakeLoginComponent implements OnInit {
 
   constructor(private router: Router,
     private formBuilder: FormBuilder,
-    private loginServie: LoginService) { }
+    private loginServie: LoginService,
+    private enviarEmailService: EnviarEmailService) { }
 
   ngOnInit() {
     this.formulario = this.formBuilder.group({
       email: [null],
       senha: [null]
     });
+
+    this.formularioRegistro = this.formBuilder.group({
+      remetNome: [null],
+      remetEmail: [null]
+    });
+
   }
 
   onSubmit() {
@@ -62,6 +71,20 @@ export class BlucakeLoginComponent implements OnInit {
       console.log(error);
     });
     console.log(this.logarDeslogar);
+  }
+
+  onSubmitRegistro() {
+    const userEmail = {
+      remetNome: this.formularioRegistro.value.remetNome,
+      remetEmail: this.formularioRegistro.value.remetEmail,
+      tipoEnvio: 1
+    };
+
+    this.enviarEmailService.EnviarEmail(userEmail).subscribe(ret => {
+      if (ret.data) {
+        alert('Email enviado com sucesso');
+      }
+    });
   }
 
   showError() {
