@@ -18,8 +18,8 @@ export class IngredienteService {
             `${API_CONFIG.baseUrl}/ingrediente`);
     }
 
-    addIngrediente(user: IngredienteDTO): Observable<ResponseDTO> {
-        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, user);
+    addIngrediente(ingrediente: IngredienteDTO): Observable<ResponseDTO> {
+        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, ingrediente);
     }
 
     atualizarIngrediente(user: IngredienteDTO): Observable<ResponseDTO> {

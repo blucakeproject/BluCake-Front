@@ -12,7 +12,7 @@ export class HomeService {
 
     buscarTodosHome(): Observable<ResponseDTO> {
         return this.http.get<ResponseDTO>(
-            `${API_CONFIG.baseUrl}/receitas`);
+            `${API_CONFIG.baseUrl}/home`);
     }
 
 }

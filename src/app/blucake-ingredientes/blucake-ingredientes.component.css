@@ -1,0 +1,8 @@
+#table-lista-ingredientes td:last-child {
+    width: 30px;
+  }
+
+
+.my-pagination /deep/ .ngx-pagination .current { 
+  padding-inline-start:0px;
+}
