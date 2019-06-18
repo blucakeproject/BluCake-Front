@@ -7,22 +7,20 @@
           <span aria-hidden="true">×</span>
         </button>
         <h4 class="modal-title">
-          {{boloClicado.nome}}
-          <span class="label label-success pull-ight" style="margin-right: 10px;">{{boloClicado.preco}}</span>
+          {{boloClicado.nome}}          
         </h4>
       </div>
       <div class="modal-body">
         <div class="row">
 
           <div class="col-md-6 col-md-push-6 col-xs-12 col-xs-push-0">
-            <img src={{boloClicado.imagem}} width="100%" height="200%">
-
-            <ul class="list-group">
-              <li class="list-group-item">
-                <i class="fa fa-check text-success"></i> Sem glúten</li>
-              <li class="list-group-item">
-                <i class="fa fa-check text-success"></i> Sem lactose</li>
-            </ul>
+            <div>
+                <img src={{boloClicado.imagem}} >
+                <p>
+                    {{boloClicado.descricao}}
+                </p>
+            </div>
+            
 
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -44,13 +42,26 @@
 
           <div class="col-md-6 col-md-pull-6 col-xs-12 col-xs-pull-0">
 
-            <label>Ingredientes</label>
-            <ul>
-              <ng-template ngFor let-ing [ngForOf]="boloClicado.ingredienteReceitas">
-                <li >{{ing.nome}}</li>
-              </ng-template>
-            </ul>
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-seedling"></i> Ingredientes</h3>
+              </div>
+              <div class="panel-body">
 
+                <ul>
+                  <ng-template ngFor let-ing [ngForOf]="boloClicado.ingredienteReceitas">
+                    <li>{{ing.nome}}</li>
+                  </ng-template>
+                </ul>
+
+              </div>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item">
+                  <i class="fa fa-check text-success"></i> Sem glúten</li>
+                <li class="list-group-item">
+                  <i class="fa fa-check text-success"></i> Sem lactose</li>
+              </ul>
           </div>
 
           <div class="col-xs-12 col-md-3">
@@ -60,8 +71,8 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <span class="label label-success pull-left" style="margin-right: 10px; font-size: 30px">{{boloClicado.preco | currency:'BRL':true:'1.2-2' }}</span>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>        
       </div>
     </div>
     <!-- /.modal-content -->

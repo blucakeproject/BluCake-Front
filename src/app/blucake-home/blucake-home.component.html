@@ -21,11 +21,14 @@
       <!-- <form> -->
       <div class="row">
         <div class="col-md-12 col-sm-3 form-group">
-          <input type="text" class="form-control" id="txtBuscaGeral" placeholder="Busca">
+          <input type="text" class="form-control" id="txtBuscaGeral" placeholder="Busca"
+            (input)="filtroDigital($event.currentTarget.value)">
         </div>
         <div class="col-md-12 col-sm-3 form-group">
-          <label for="select-multiplo" class="form-label">Classificação</label>
-          <select id="select-multiplo" class="selectpicker form-control" multiple="multiple" title="Selecione">
+
+
+          <select id="select-multiplo" class="selectpicker form-control" multiple="multiple"
+            title="Classificação do Bolo">
             <option>Diet</option>
             <option>Light</option>
             <option>Vegetariana</option>
@@ -41,16 +44,30 @@
       <ng-template ngFor let-rec [ngForOf]="records">
         <div class="col-xs-12 col-sm-6 col-md-3">
           <div class="thumbnail">
-            <img src={{rec.imagem}} >
+            <div>
+              <img src={{rec.imagem}}>
+              <div class="icones-classificacao">
+                <span class="label label-success label-lg" title="Vegano"><i class="fa fa-leaf"></i></span>
+                <span class="label label-warning label-lg" title="Sem Glutén"><i class="fa fa-seedling"></i></span>
+              </div>
+            </div>
+
             <div class="caption">
               <h3>{{rec.nome}}</h3>
-              <span class="lead label label-success">R$ {{rec.preco}}</span>
+              <span class="lead label label-success">{{rec.preco | currency:'BRL':true:'1.2-2'}}</span>
               <br>
               <br>
               <div class="text-center">
                 <div>
-                  <button type="button" class="btn btn-primary" (click)="boloSelecionado(rec)" data-toggle="modal" data-target="#modal-detalhes-1" role="button"><i class="fa fa-list"></i>Detalhes</button>
-                  <button type="button" class="btn btn-default"  role="button"><i class="fa fa-phone"></i>Detalhes</button>                  
+                  <button type="button" class="btn btn-default no-border" (click)="boloSelecionado(rec)" data-toggle="modal"
+                    data-target="#modal-detalhes-1" role="button"><i class="fa fa-list"></i>Detalhes</button>
+
+                    <button type="button" class="btn btn-default no-border" data-toggle="modal" data-target="#modal-contato-confeiteiro"
+                    role="button" (click)="boloSelecionado(rec)">
+                    Contato
+                    <i class="fa fa-envelope"></i>
+                  </button>
+                 
                 </div>
               </div>
             </div>
@@ -62,5 +79,12 @@
 </div>
 
 <app-blucake-home-detalhe></app-blucake-home-detalhe>
+
+<app-blucake-enviar-email></app-blucake-enviar-email>
+
+
+
+
+
 
 

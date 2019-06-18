@@ -12,6 +12,8 @@ export class BlucakeHomeComponent implements OnInit {
 
   records;
 
+  stringFiltro;
+
   constructor(private homeService: HomeService,
               private bluCakeService: BluCakeService,
               private messageService: MessageService) { }
@@ -23,6 +25,9 @@ export class BlucakeHomeComponent implements OnInit {
   ativarTabela() {
     this.homeService.buscarTodosHome().subscribe(res => {
       this.records = res.data;
+      if (this.stringFiltro) {
+        this.records = this.records.filter(items => items.nome.includes(this.stringFiltro));
+      }
     });
   }
 
@@ -31,4 +36,8 @@ export class BlucakeHomeComponent implements OnInit {
     this.bluCakeService.setValue(rec);
   }
 
+  filtroDigital(str: String) {
+    this.stringFiltro = str;
+       this.ativarTabela();
+  }
 }

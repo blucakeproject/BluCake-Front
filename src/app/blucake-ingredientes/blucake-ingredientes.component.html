@@ -1,26 +1,58 @@
-<div class="container">
-  <div class="table-responsive">
-
-        <button (click)= "addIngrediente()">Adicionar</button>
-        <button (click)= "removerIngrediente()">Remover</button>
-        <button (click)= "visualizarIngrediente($event, registroSelecionado)">Visualizar</button>
-
-      <table class="table">
-          <thead>
-              <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">Descrição</th>                  
-              </tr>
-          </thead>
-  
-          <tbody>
-              <ng-template ngFor let-xb [ngForOf]="records">
-                  <tr (click)="linhaSelecionada(xb)">
-                      <td id="xb.id" scope="row">{{xb.id}}</td>
-                      <td>{{ xb.nome }}</td>                                   
-                  </tr>
-              </ng-template>
-          </tbody>
-      </table>
+<div id="corpo" class="container">
+  <div class="page-header">
+    <h1>Cadastro de Ingredientes</h1>
   </div>
+
+  <div class="row">
+
+    <div class="col-xs-12">
+      <div class="well alert alert-primary">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <p>Você deve cadastrar os ingredientes aqui para utilizar posteriormente no
+          <a href="receitas.html" target="_blank">cadastro de receitas</a>.
+        </p>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <form [formGroup]="formularioIngrediente">
+        <div class="input-group">
+          <input type="text" class="form-control" id="txtAdicionaIngrediente" placeholder="Novo Ingrediente"
+            formControlName="nome">
+          
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" (click)='salvar()'><i class="fa fa-plus"></i></button>
+          </span>
+        </div>
+      </form>
+      <br><br>
+    </div>
+
+
+    <div class="col-xs-12">
+      <table id="table-lista-ingredientes" class="table table-condensed table-responsive">
+        <thead>
+          <tr>
+            <th>Ingrediente</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let rec of records | paginate: { itemsPerPage: 5, currentPage: paginaAtual };">
+          <td>{{rec.nome}}</td>
+          <td>
+            <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
+          </td>
+        </tr>
+      </table>
+      <div class="row">
+          <div class="col-xs-4">             
+            </div>
+          <div class="col-xs-4">
+             <pagination-controls class="my-pagination" (pageChange)="paginaAtual = $event" responsive="true"></pagination-controls>
+           </div>
+           <div class="col-xs-4">             
+            </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
 </div>

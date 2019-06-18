@@ -10,6 +10,7 @@ import { IngredienteDTO } from '../blucake-models/ingredienteDTO';
 @Injectable()
 export class IngredienteService {
 
+   
 
     constructor(private http: HttpClient) { }
 
@@ -18,8 +19,11 @@ export class IngredienteService {
             `${API_CONFIG.baseUrl}/ingrediente`);
     }
 
-    addIngrediente(user: IngredienteDTO): Observable<ResponseDTO> {
-        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, user);
+    addIngrediente(ingrediente: IngredienteDTO, file: File): Observable<ResponseDTO> {
+       const formdata: FormData = new FormData();
+        formdata.append('file', file);
+        ingrediente.file =  formdata;
+        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, ingrediente);
     }
 
     atualizarIngrediente(user: IngredienteDTO): Observable<ResponseDTO> {

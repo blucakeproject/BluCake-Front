@@ -1,3 +1,35 @@
 .caption>h3 {
     margin: 0;
   }
+
+  #listagem-de-bolos>.col-xs-12 {
+    padding: 0;
+  }
+
+  .thumbnail>div:first-child {
+    position: relative;
+  }
+
+  .icones-classificacao {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 5px;
+  }
+
+  .icones-classificacao span.label {
+    float: right;
+    margin-left: 3px;
+  }
+
+  div[class^='col-'] img {
+    max-width: 100%;
+    margin-bottom: 5px;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+    max-height: 500px;
+  }
+

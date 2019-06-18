@@ -1,0 +1,36 @@
+<div class="modal fade" id="modal-contato-confeiteiro" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><i class="fa fa-user"></i> Entre em contato com: {{nomeConfeiteiro}}</h4>
+      </div>
+      <div class="modal-body">
+ 
+        <form [formGroup]="formulario"> 
+          <div class="form-group">
+            <label for="txtContatoNome">Nome <i class="fa fa-user"></i></label>
+            <input type="text" class="form-control" id="txtContatoNome" placeholder="Seu nome" formControlName="nome">
+          </div>
+          <div class="form-group">
+            <label for="txtContatoEmail">E-mail <i class="fa fa-envelope"></i></label>
+            <input type="text" class="form-control" id="txtContatoEmail" placeholder="seuemail@exemplo.com" formControlName="email">
+          </div>
+          <div class="form-group">
+            <label for="txtContatoTelefone">Telefone <i class="fa fa-phone"></i></label>
+            <input type="text" class="form-control" id="txtContatoTelefone" placeholder="(99) 99999-9999" formControlName="telefone">
+          </div>
+          <div class="form-group">
+            <label for="txtContatoMensagem">Mensagem</label>
+            <textarea id="txtContatoMensagem" class="form-control" rows="3" formControlName="textArea"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary" (click)= "onSubmitEnviarEmailInter()">Enviar <i class="fa fa-paper-plane" ></i></button>
+      </div>
+    </div>
+  </div>
+</div>
+

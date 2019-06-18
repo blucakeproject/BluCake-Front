@@ -7,6 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
+import { NgxPaginationModule } from 'ngx-pagination';
+
 import { BlucakeRoutingModule } from './blucake-routing/blucake-routing.module';
 import { BlucakeHomeComponent } from './blucake-home/blucake-home.component';
 import { BlucakeLoginComponent } from './blucake-login/blucake-login.component';
@@ -20,11 +22,12 @@ import { AuthInterceptor } from './interceptors.ts/auht.interceptors';
 import { HomeService } from './blucake-services/home.service';
 import { BlucakeReceitasComponent } from './blucake-receitas/blucake-receitas.component';
 import { BlucakeIngredientesComponent } from './blucake-ingredientes/blucake-ingredientes.component';
-import { IngredienteDetalheComponent } from './blucake-ingredientes/ingrediente-detalhe/ingrediente-detalhe.component';
+
 import { BluCakeService } from './blucake-services/blucake.service';
 import { BlucakeHomeDetalheComponent } from './blucake-home/blucake-home-detalhe/blucake-home-detalhe.component';
 import { EnviarEmailService } from './blucake-services/enviar-email';
 import { MessageService } from './blucake-services/MessageService';
+import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-enviar-email.component';
 
 @NgModule({
   declarations: [
@@ -35,15 +38,16 @@ import { MessageService } from './blucake-services/MessageService';
     BlucakeNavbarComponent,
     BlucakeReceitasComponent,
     BlucakeIngredientesComponent,
-    IngredienteDetalheComponent,
-    BlucakeHomeDetalheComponent
+    BlucakeHomeDetalheComponent,
+    BlucakeEnviarEmailComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     BlucakeRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
       ],
   providers: [LoginService,
               StorageService,
