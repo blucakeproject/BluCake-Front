@@ -19,6 +19,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
         if (localUser && requestToAPI) {
            const headers = req.headers
+           .set('Content-Type', 'application/text')
             .set('Content-Type', 'application/json')
             .set('Authorization',  'Bearer ' + localUser.token);
 
