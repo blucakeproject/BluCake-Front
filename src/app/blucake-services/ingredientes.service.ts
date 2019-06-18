@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ResponseDTO } from '../blucake-models/responseDTO';
 import { API_CONFIG } from '../config/api.config';
@@ -10,8 +10,6 @@ import { IngredienteDTO } from '../blucake-models/ingredienteDTO';
 @Injectable()
 export class IngredienteService {
 
-   
-
     constructor(private http: HttpClient) { }
 
     buscarTodosIngredientes(): Observable<ResponseDTO> {
@@ -19,18 +17,20 @@ export class IngredienteService {
             `${API_CONFIG.baseUrl}/ingrediente`);
     }
 
-    addIngrediente(ingrediente: IngredienteDTO, file: File): Observable<ResponseDTO> {
-       const formdata: FormData = new FormData();
-        formdata.append('file', file);
-        ingrediente.file =  formdata;
+    addIngrediente(ingrediente: IngredienteDTO): Observable<ResponseDTO> {
         return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, ingrediente);
     }
 
-    atualizarIngrediente(user: IngredienteDTO): Observable<ResponseDTO> {
-        return this.http.put<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, user);
+    atualizarIngrediente(ingrediente: IngredienteDTO): Observable<ResponseDTO> {
+        return this.http.put<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, ingrediente);
     }
 
-    deletarIngredient(user: IngredienteDTO): Observable<ResponseDTO> {
-        return this.http.delete<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`);
+    deletarIngrediente(ingrediente: IngredienteDTO): Observable<ResponseDTO> {
+        const httpParams = new HttpParams();
+        httpParams.set('ingredientes',  'ingrediente');
+
+        const options = { params: httpParams };
+
+        return this.http.delete<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, options);
     }
 }

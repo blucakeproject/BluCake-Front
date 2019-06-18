@@ -15,10 +15,6 @@ import { StorageService } from '../blucake-services/storage.service';
 })
 export class BlucakeIngredientesComponent implements OnInit {
 
-  selectedFiles: FileList;
-  currentFileUpload: File;
-
-
   formularioIngrediente: FormGroup;
 
   records;
@@ -52,11 +48,22 @@ export class BlucakeIngredientesComponent implements OnInit {
       id: this.formularioIngrediente.value.id || null,
       nome: this.formularioIngrediente.value.nome,
       usuarioId: this.storageService.getLocalUser().usuario.id,
-      dataCadastro: null,
-      file: null
+      dataCadastro: null
     };
-    this.ingredienteService.addIngrediente(ingredienteDTO, this.currentFileUpload ).subscribe(ret => {
+    this.ingredienteService.addIngrediente(ingredienteDTO).subscribe(ret => {
      this.ativarIngredientes();
+    });
+  }
+
+  removerIngredientes(rec) {
+    const ingredienteDTO: IngredienteDTO = {
+      id: rec.id,
+      nome: rec.nome,
+      usuarioId: rec.usuario.id,
+      dataCadastro: null
+    };
+    this.ingredienteService.deletarIngrediente(ingredienteDTO).subscribe(ret => {
+      debugger
     });
   }
 

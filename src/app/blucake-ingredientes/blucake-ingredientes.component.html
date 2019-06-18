@@ -39,7 +39,7 @@
         <tr *ngFor="let rec of records | paginate: { itemsPerPage: 5, currentPage: paginaAtual };">
           <td>{{rec.nome}}</td>
           <td>
-            <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
+            <button class="btn btn-default no-border"  (click)="removerIngredientes(rec)"><i class="fa fa-trash"></i></button>
           </td>
         </tr>
       </table>
