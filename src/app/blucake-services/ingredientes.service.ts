@@ -26,11 +26,6 @@ export class IngredienteService {
     }
 
     deletarIngrediente(ingrediente: IngredienteDTO): Observable<ResponseDTO> {
-        const httpParams = new HttpParams();
-        httpParams.set('ingredientes',  'ingrediente');
-
-        const options = { params: httpParams };
-
-        return this.http.delete<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente`, options);
+        return this.http.delete<ResponseDTO>(`${API_CONFIG.baseUrl}/ingrediente/${ingrediente.id}`);
     }
 }

@@ -30,6 +30,10 @@ export class BlucakeIngredientesComponent implements OnInit {
 
   ngOnInit() {
     this.ativarIngredientes();
+    this.criarForm();
+  }
+
+  criarForm() {
     this.formularioIngrediente = this.formBuilder.group({
       id: [null],
       nome: [null],
@@ -51,7 +55,9 @@ export class BlucakeIngredientesComponent implements OnInit {
       dataCadastro: null
     };
     this.ingredienteService.addIngrediente(ingredienteDTO).subscribe(ret => {
-     this.ativarIngredientes();
+
+      this.criarForm();
+      this.ativarIngredientes();
     });
   }
 
@@ -63,30 +69,30 @@ export class BlucakeIngredientesComponent implements OnInit {
       dataCadastro: null
     };
     this.ingredienteService.deletarIngrediente(ingredienteDTO).subscribe(ret => {
-      debugger
+      this.ativarIngredientes();
     });
   }
 
-  configDataTable() {
-    // $(document).ready(function () {
-    //     $('#table-lista-ingredientes').DataTable({
-    //       language: {
-    //         'sEmptyTable': 'Nenhum registro encontrado',
-    //         'sInfo': 'Mostrando de _START_ até _END_ de _TOTAL_ registros', 'sInfoEmpty': 'Mostrando 0 até 0 de 0 registros',
-    //         'sInfoFiltered': '(Filtrados de _MAX_ registros)', 'sInfoPostFix': '',
-    //         'sInfoThousands': '.', 'sLengthMenu': '_MENU_ resultados por página',
-    //         'sLoadingRecords': 'Carregando...', 'sProcessing': 'Processando...',
-    //         'sZeroRecords': 'Nenhum registro encontrado', 'sSearch': 'Pesquisar',
-    //         'oPaginate': {
-    //           'sNext': 'Próximo', 'sPrevious': 'Anterior',
-    //           'sFirst': 'Primeiro', 'sLast': 'Último'
-    //         },
-    //         'oAria': {
-    //           'sSortAscending': ': Ordenar colunas de forma ascendente',
-    //           'sSortDescending': ': Ordenar colunas de forma descendente'
-    //         }
-    //       }
-    //     });
-    //   });
-  }
+  // configDataTable() {
+  //   $(document).ready(function () {
+  //       $('#table-lista-ingredientes').DataTable({
+  //         language: {
+  //           'sEmptyTable': 'Nenhum registro encontrado',
+  //           'sInfo': 'Mostrando de _START_ até _END_ de _TOTAL_ registros', 'sInfoEmpty': 'Mostrando 0 até 0 de 0 registros',
+  //           'sInfoFiltered': '(Filtrados de _MAX_ registros)', 'sInfoPostFix': '',
+  //           'sInfoThousands': '.', 'sLengthMenu': '_MENU_ resultados por página',
+  //           'sLoadingRecords': 'Carregando...', 'sProcessing': 'Processando...',
+  //           'sZeroRecords': 'Nenhum registro encontrado', 'sSearch': 'Pesquisar',
+  //           'oPaginate': {
+  //             'sNext': 'Próximo', 'sPrevious': 'Anterior',
+  //             'sFirst': 'Primeiro', 'sLast': 'Último'
+  //           },
+  //           'oAria': {
+  //             'sSortAscending': ': Ordenar colunas de forma ascendente',
+  //             'sSortDescending': ': Ordenar colunas de forma descendente'
+  //           }
+  //         }
+  //       });
+  //     });
+  // }
 }
