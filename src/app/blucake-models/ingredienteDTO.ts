@@ -3,5 +3,4 @@ export interface IngredienteDTO {
     nome: String;
     usuarioId: number;
     dataCadastro: any;
-    file: any;
 }
