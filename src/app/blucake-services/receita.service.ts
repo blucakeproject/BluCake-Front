@@ -11,8 +11,8 @@ export class ReceitaService {
 
     constructor(private http: HttpClient) { }
 
-    buscarReceitasUsuario(): Observable<ResponseDTO> {
-        return this.http.get<ResponseDTO>(`${API_CONFIG.baseUrl}/receita`);
+    buscarReceitas(): Observable<ResponseDTO> {
+        return this.http.get<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`);
     }
 
     addReceita(receita: ReceitaDTO): Observable<ResponseDTO> {

@@ -5,7 +5,7 @@
                 <h2>Receitas</h2>
             </div>
             <div class="col-xs-12 col-sm-3">
-                <a href="cadastrar-receita.html" class="btn btn-primary btn-sm pull-right">
+                <a href="/receitasDetalhe" class="btn btn-primary btn-sm pull-right">
                     Cadastrar Receita
                     <i class="fa fa-plus"></i>
                 </a>
@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-xs-12">
-            <table id="table-lista-ingredientes" class="table table-condensed table-responsive">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead>
                     <tr>
                         <th style="width: 100%">Receita</th>
@@ -27,14 +27,10 @@
                     <tr  *ngFor="let rec of records">
                         <td>Bolo de chocolate</td>
                         <td>
-                            <button class="btn btn-default no-border">
-                                <i class="fa fa-edit"></i>
-                            </button>
+                            <button class="btn btn-default no-border" (click)="edtarReceita(rec)"><i class="fa fa-edit"></i></button>
                         </td>
                         <td>
-                            <button class="btn btn-default no-border">
-                                <i class="fa fa-trash"></i>
-                            </button>
+                            <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>
                 </tbody>

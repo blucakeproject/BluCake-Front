@@ -26,13 +26,11 @@
       </form>
       <br><br>
     </div>
-
-
     <div class="col-xs-12">
       <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
-            <th>Ingrediente</th>
+            <th style="width: 100%">Ingrediente</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -41,8 +39,7 @@
            <tr *ngFor="let rec of records"> 
             <td>{{rec.nome}}</td> 
             <td>
-              <button class="btn btn-default no-border" (click)="removerIngredientes(rec)"><i
-                  class="fa fa-trash"></i></button>
+              <button class="btn btn-default no-border" (click)="removerIngredientes(rec)"><i class="fa fa-trash"></i></button>
             </td>
           </tr> 
         </tbody>

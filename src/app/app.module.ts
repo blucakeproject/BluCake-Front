@@ -29,6 +29,8 @@ import { EnviarEmailService } from './blucake-services/enviar-email';
 import { MessageService } from './blucake-services/MessageService';
 import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-enviar-email.component';
 import { DataTablesModule } from 'angular-datatables';
+import { ReceitaService } from './blucake-services/receita.service';
+import { BlucakeReceitasDetalheComponent } from './blucake-receitas/blucake-receitas-detalhe/blucake-receitas-detalhe.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { DataTablesModule } from 'angular-datatables';
     BlucakeReceitasComponent,
     BlucakeIngredientesComponent,
     BlucakeHomeDetalheComponent,
-    BlucakeEnviarEmailComponent
+    BlucakeEnviarEmailComponent,
+    BlucakeReceitasDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -60,7 +63,8 @@ import { DataTablesModule } from 'angular-datatables';
               IngredienteService,
               BluCakeService,
               EnviarEmailService,
-              MessageService
+              MessageService,
+              ReceitaService
             ],
   bootstrap: [AppComponent]
 })
