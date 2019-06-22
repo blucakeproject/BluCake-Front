@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular/core';
 import { IngredienteService } from '../blucake-services/ingredientes.service';
 import { Router } from '@angular/router';
 import { BluCakeService } from '../blucake-services/blucake.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { IngredienteDTO } from '../blucake-models/ingredienteDTO';
 import { StorageService } from '../blucake-services/storage.service';
+import { Subject } from 'rxjs';
+import { DataTableDirective } from 'angular-datatables';
 
 
 
@@ -13,14 +15,18 @@ import { StorageService } from '../blucake-services/storage.service';
   templateUrl: './blucake-ingredientes.component.html',
   styleUrls: ['./blucake-ingredientes.component.css']
 })
-export class BlucakeIngredientesComponent implements OnInit {
+export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
+
+  @ViewChild(DataTableDirective)
+  dtElement: DataTableDirective;
+
+  dtOptions: DataTables.Settings = {};
+
+  dtTrigger: Subject<any> = new Subject();
 
   formularioIngrediente: FormGroup;
 
   records;
-
-  public paginaAtual = 1;
-
 
   constructor(private ingredienteService: IngredienteService,
     private router: Router,
@@ -29,9 +35,17 @@ export class BlucakeIngredientesComponent implements OnInit {
     private storageService: StorageService) { }
 
   ngOnInit() {
-    this.ativarIngredientes();
+    this.ativarIngredientes(true);
     this.criarForm();
+
+    this.dtOptions = {
+      pagingType: 'full_numbers',
+      pageLength: 10,
+      retrieve: true
+    };
   }
+
+
 
   criarForm() {
     this.formularioIngrediente = this.formBuilder.group({
@@ -41,9 +55,14 @@ export class BlucakeIngredientesComponent implements OnInit {
     });
   }
 
-  ativarIngredientes() {
+  ativarIngredientes(render: Boolean) {
     this.ingredienteService.buscarTodosIngredientes().subscribe(ret => {
       this.records = ret.data;
+      if (render) {
+        this.dtTrigger.next();
+      } else {
+        this.rerender();
+      }
     });
   }
 
@@ -55,9 +74,8 @@ export class BlucakeIngredientesComponent implements OnInit {
       dataCadastro: null
     };
     this.ingredienteService.addIngrediente(ingredienteDTO).subscribe(ret => {
-
       this.criarForm();
-      this.ativarIngredientes();
+      this.ativarIngredientes(false);
     });
   }
 
@@ -69,30 +87,20 @@ export class BlucakeIngredientesComponent implements OnInit {
       dataCadastro: null
     };
     this.ingredienteService.deletarIngrediente(ingredienteDTO).subscribe(ret => {
-      this.ativarIngredientes();
+      this.ativarIngredientes(false);
     });
   }
 
-  // configDataTable() {
-  //   $(document).ready(function () {
-  //       $('#table-lista-ingredientes').DataTable({
-  //         language: {
-  //           'sEmptyTable': 'Nenhum registro encontrado',
-  //           'sInfo': 'Mostrando de _START_ até _END_ de _TOTAL_ registros', 'sInfoEmpty': 'Mostrando 0 até 0 de 0 registros',
-  //           'sInfoFiltered': '(Filtrados de _MAX_ registros)', 'sInfoPostFix': '',
-  //           'sInfoThousands': '.', 'sLengthMenu': '_MENU_ resultados por página',
-  //           'sLoadingRecords': 'Carregando...', 'sProcessing': 'Processando...',
-  //           'sZeroRecords': 'Nenhum registro encontrado', 'sSearch': 'Pesquisar',
-  //           'oPaginate': {
-  //             'sNext': 'Próximo', 'sPrevious': 'Anterior',
-  //             'sFirst': 'Primeiro', 'sLast': 'Último'
-  //           },
-  //           'oAria': {
-  //             'sSortAscending': ': Ordenar colunas de forma ascendente',
-  //             'sSortDescending': ': Ordenar colunas de forma descendente'
-  //           }
-  //         }
-  //       });
-  //     });
-  // }
+  ngOnDestroy(): void {
+    this.dtTrigger.unsubscribe();
+  }
+
+  rerender(): void {
+    this.dtElement.dtInstance.then((dtInstance: DataTables.Api) => {
+      // Destroy the table first
+      dtInstance.destroy();
+      // Call the dtTrigger to rerender again
+      this.dtTrigger.next();
+    });
+  }
 }

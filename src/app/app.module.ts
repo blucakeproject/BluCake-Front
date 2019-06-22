@@ -28,6 +28,7 @@ import { BlucakeHomeDetalheComponent } from './blucake-home/blucake-home-detalhe
 import { EnviarEmailService } from './blucake-services/enviar-email';
 import { MessageService } from './blucake-services/MessageService';
 import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-enviar-email.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-envi
     BlucakeRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DataTablesModule
       ],
   providers: [LoginService,
               StorageService,
