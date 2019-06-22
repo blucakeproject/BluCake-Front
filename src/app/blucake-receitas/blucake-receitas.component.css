@@ -1,0 +1,17 @@
+.page-header .btn {
+    margin-top: 30px;
+  }
+
+  #foto-receita img {
+    max-height: 100%;
+  }
+
+  #foto-receita {
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .panel-body {
+    max-height: 180px;
+    overflow-y: scroll;
+  }
