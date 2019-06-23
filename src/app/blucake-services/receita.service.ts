@@ -16,11 +16,11 @@ export class ReceitaService {
     }
 
     addReceita(receita: ReceitaDTO): Observable<ResponseDTO> {
-        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/receita`, receita);
+        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`, receita);
     }
 
     atualizarReceita(receita: ReceitaDTO): Observable<ResponseDTO> {
-        return this.http.put<ResponseDTO>(`${API_CONFIG.baseUrl}/receita`, receita);
+        return this.http.put<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`, receita);
     }
 
 }

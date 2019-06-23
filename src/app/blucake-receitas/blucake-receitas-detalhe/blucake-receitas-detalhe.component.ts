@@ -1,3 +1,4 @@
+import { StorageService } from './../../blucake-services/storage.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { BluCakeService } from 'src/app/blucake-services/blucake.service';
@@ -5,6 +6,7 @@ import { ReceitaDTO } from 'src/app/blucake-models/receitaDTO';
 import { IngredienteDTO } from 'src/app/blucake-models/ingredienteDTO';
 import { IngredienteService } from 'src/app/blucake-services/ingredientes.service';
 import { Router } from '@angular/router';
+import { ReceitaService } from 'src/app/blucake-services/receita.service';
 
 @Component({
   selector: 'app-blucake-receitas-detalhe',
@@ -26,7 +28,9 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private bluCakeService: BluCakeService,
     private ingredienteService: IngredienteService,
-    private router: Router) { }
+    private router: Router,
+    private storageService: StorageService,
+    private receitaService: ReceitaService) { }
 
   ngOnInit() {
     this.criarForm();
@@ -90,25 +94,28 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
   }
 
   salvarCadastroReceita() {
-
+    if (this.receitaSelecionada) {
+      this.salvarNovaReceita(this.receitaSelecionada.id);
+    } else {
+      this.salvarNovaReceita(null);
+    }
   }
 
-  salvarNovaReceita() {
-      // const receitaDTO: ReceitaDTO = {
-      //   receita_id: this.formularioReceita.value.receita_id,
-      //   nome: this.formularioReceita.value.nome,
-      //   descricao: this.formularioReceita.value.descricao,
-      //   preco: this.formularioReceita.value.preco,
-      //   imagem: this.formularioReceita.value.imagem,
-      //   dataCadastro: this.formularioReceita.value.dataCadastro || null,
-      //   ativo: this.formularioReceita.value.ativo,
-      //   ingredientes: this.formularioReceita.value.ingredientes,
-      //   usuarioId: this.storageService.getLocalUser().usuario.id
-      // };
-      // this.receitaService.addReceita(receitaDTO).subscribe(ret => {
-
-      //   this.criarForm();
-      //   this.ativarReceitas();
-      // });
+  salvarNovaReceita(id) {
+    const receitaDTO: ReceitaDTO = {
+      id: id,
+      nome: this.formularioReceita.value.nome,
+      descricao: this.formularioReceita.value.descricao,
+      preco: this.formularioReceita.value.preco,
+      imagem: this.formularioReceita.value.imagem,
+      dataCadastro: this.formularioReceita.value.dataCadastro || null,
+      ativo: this.formularioReceita.value.ativo,
+      ingredienteReceitas: this.listaIngedientesReceita,
+      usuarioId: this.storageService.getLocalUser().usuario.id,
+      classificacao: this.listaClassificacaoReceita
+    };
+    this.receitaService.addReceita(receitaDTO).subscribe(ret => {
+      this.cancelarCadastro();
+    });
   }
 }

@@ -1,3 +1,5 @@
+import { IngredienteDTO } from './ingredienteDTO';
+
 export interface ReceitaDTO {
 
     id: String;
@@ -7,7 +9,7 @@ export interface ReceitaDTO {
     imagem: String;
     dataCadastro: String;
     ativo: String;
-    ingredienteReceitas: any[];
+    ingredienteReceitas: IngredienteDTO[];
     usuarioId: number;
     classificacao: any[];
 }
