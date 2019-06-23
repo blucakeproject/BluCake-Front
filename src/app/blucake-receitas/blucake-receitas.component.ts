@@ -26,8 +26,8 @@ export class BlucakeReceitasComponent implements OnInit, OnDestroy {
   records;
 
   constructor(private receitaService: ReceitaService,
-              private router: Router,
-              private bluCakeService: BluCakeService) { }
+    private router: Router,
+    private bluCakeService: BluCakeService) { }
 
   ngOnInit() {
     this.ativarReceitas(true);
@@ -118,6 +118,11 @@ export class BlucakeReceitasComponent implements OnInit, OnDestroy {
       // Call the dtTrigger to rerender again
       this.dtTrigger.next();
     });
+  }
+
+  novaReceita() {
+    this.bluCakeService.setValue(null);
+    this.router.navigate(['/receitasDetalhe']);
   }
 
 }

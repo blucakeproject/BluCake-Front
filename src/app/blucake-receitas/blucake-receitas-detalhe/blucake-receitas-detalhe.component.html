@@ -1,40 +1,31 @@
 <div id="corpo" class="container">
-
   <div class="page-header">
     <h2>Cadastro de Receita</h2>
   </div>
-
   <div class="row">
-
     <form [formGroup]="formularioReceita">
-
       <div class="col-xs-12 col-md-7">
-
         <div class="row">
           <div class="form-group col-xs-12 col-md-8">
             <label for="txtNomeReceita">Nome da Receita</label>
-            <input type="text" class="form-control" id="nomeReceita" placeholder="Bolo de ..."
-              formControlName="nome">
+            <input type="text" class="form-control" id="nomeReceita" placeholder="Bolo de ..." formControlName="nome">
           </div>
           <div class="form-group col-xs-12 col-md-4">
             <label for="txtNomeReceita">Preço</label>
             <input type="text" class="form-control" id="precoReceita" placeholder="R$" formControlName="preco">
           </div>
         </div>
-
         <div class="form-group">
           <div class="checkbox">
             <label><input id="cbAtivo" checked="checked" type="checkbox" value="" formControlName="ativo">Receita
               Ativa</label>
           </div>
         </div>
-
         <div class="form-group">
           <label for="txtDescricaoReceita">Breve descrição</label>
           <textarea id="txtDescricaoReceita" class="form-control" placeholder="Escreva uma breve descrição"
             formControlName="descricao"></textarea>
         </div>
-
         <div class="row">
           <div class="form-group col-xs-12 col-md-6">
             <div class="panel panel-primary">
@@ -55,7 +46,6 @@
               </div>
             </div>
           </div>
-
           <div class="form-group col-xs-12 col-md-6">
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -77,32 +67,34 @@
           </div>
         </div>
       </div>
-
-
       <div class="col-xs-12 col-md-5">
-        <input id="fileUpload" accept="image/*" type="file" style="display: none;">
         <div id="foto-receita" class="well" style="height: 325px">
-          <h3 class="lead">
-            <i class="fa fa-camera"></i> Foto da receita <small>Clique para adicionar</small>
-          </h3>
           <img src="{{imagem}}">
         </div>
+        <h3 class="lead">
+          <label class="fileContainer">
+            <button class="btn btn-primary default no-border">Carregar Imagem
+              <i class="fas fa-upload"></i>
+            </button>
+            <input type="file" />
+          </label>
+        </h3>
       </div>
-
       <div class="col-xs-12">
-        <button type="button" class="btn btn-default no-border">Cancelar</button>
-        <button type="submit" class="btn btn-primary default no-border">Salvar
+        <button type="button" class="btn btn-default no-border" (click)="cancelarCadastro()">Cancelar</button>
+        <button type="submit" class="btn btn-primary default no-border" (click)="salvarCadastroReceita()">Salvar
           <i class="fa fa-paper-plane"></i>
         </button>
         <br>
         <br>
       </div>
-
-    </form>
-
+     </form>
   </div>
-
 </div>
+
+
+
+<!-- Inicio Modal Ingredientes   -->
 
 <div class="modal fade" id="modal-ingredientes" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -113,48 +105,23 @@
         <h4 class="modal-title"><i class="fa fa-seedling"></i> Selecione os ingredientes desta receita</h4>
       </div>
       <div class="modal-body">
-
         <p>
           Selecionar os ingredientes da sua receita é importante para que pessoas com restrições alimentares saibam
           quais receitas não são prejucidiais à sua saúde.
         </p>
         <hr>
-        <ul style="list-style: none;">
-          <li>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Aveia</label>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Cacau</label>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Fermento</label>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Ovos</label>
-            </div>
-          </li>
-          <li>
-            <div class="checkbox">
-              <label><input type="checkbox" value="">Trigo</label>
-            </div>
-          </li>
-        </ul>
-
+        <app-blucake-listbox [source]="todosIngreditentes" [(destination)]="listaIngedientesReceita" height="350px"
+          (selectChange)="showMessage($event)" sourceName="Lista Ingredientes" targetName="Ingredientes Receita"
+          [sort]="true" key="id" display="nome" filter="true"></app-blucake-listbox>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar <i class="fa fa-paper-plane"></i></button>
       </div>
     </div>
   </div>
 </div>
+
+<!-- Fim modal ongreditemtes -->
 
 <div class="modal fade" id="modal-classificacoes" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
@@ -165,7 +132,6 @@
         <h4 class="modal-title"><i class="fa fa-list"></i> Selecione as classificações da sua receita</h4>
       </div>
       <div class="modal-body">
-
         <p>
           Selecionar as classificações da sua receita é importante para que pessoas com restrições alimentares saibam
           qual receita escolher. Além de a sua receita ser achada com mais facilidade através de filtros de busca.
@@ -174,40 +140,44 @@
         <ul style="list-style: none;">
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Diet</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:1, nome: 'Diet', check: ''}, $event)">Diet</label>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Light</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:2, nome: 'Light', check: ''}, $event)">Light</label>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Vegetariana</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:3, nome: 'Vegetariana', check: ''}, $event)">Vegetariana</label>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Vegana</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:4, nome: 'Vegana', check: ''}, $event)">Vegana</label>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Sem Glúten</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:5, nome: 'Sem Glúten', check: ''}, $event)">Sem Glúten</label>
             </div>
           </li>
           <li>
             <div class="checkbox">
-              <label><input type="checkbox" value="">Sem Lactose</label>
+              <label><input type="checkbox" value=""
+                  (click)="selecionarClassificacao({id:6, nome: 'Sem Lactose', check: ''}, $event)">Sem Lactose</label>
             </div>
           </li>
         </ul>
-
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Salvar <i class="fa fa-paper-plane"></i></button>
       </div>
     </div>
   </div>

@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DualListBoxModule } from 'ng2-dual-list-box';
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 import { BlucakeRoutingModule } from './blucake-routing/blucake-routing.module';
 import { BlucakeHomeComponent } from './blucake-home/blucake-home.component';
@@ -31,6 +33,8 @@ import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-envi
 import { DataTablesModule } from 'angular-datatables';
 import { ReceitaService } from './blucake-services/receita.service';
 import { BlucakeReceitasDetalheComponent } from './blucake-receitas/blucake-receitas-detalhe/blucake-receitas-detalhe.component';
+import { BlucakeListBoxModule } from './blucake-listbox/blucake-listbox.module';
+
 
 @NgModule({
   declarations: [
@@ -52,7 +56,10 @@ import { BlucakeReceitasDetalheComponent } from './blucake-receitas/blucake-rece
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    DataTablesModule
+    DataTablesModule,
+    DualListBoxModule.forRoot(),
+    AngularDualListBoxModule,
+    BlucakeListBoxModule
       ],
   providers: [LoginService,
               StorageService,
