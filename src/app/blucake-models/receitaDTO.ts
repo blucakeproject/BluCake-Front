@@ -1,12 +1,15 @@
+import { IngredienteDTO } from './ingredienteDTO';
+
 export interface ReceitaDTO {
-   
-    receita_id: String;
+
+    id: String;
     nome: String;
     descricao: String;
     preco: String;
     imagem: String;
     dataCadastro: String;
     ativo: String;
-    ingredientes: [];
-    usuarioId: String
+    ingredienteReceitas: IngredienteDTO[];
+    usuarioId: number;
+    classificacao: any[];
 }

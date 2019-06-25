@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DualListBoxModule } from 'ng2-dual-list-box';
+import { AngularDualListBoxModule } from 'angular-dual-listbox';
 
 import { BlucakeRoutingModule } from './blucake-routing/blucake-routing.module';
 import { BlucakeHomeComponent } from './blucake-home/blucake-home.component';
@@ -28,6 +30,11 @@ import { BlucakeHomeDetalheComponent } from './blucake-home/blucake-home-detalhe
 import { EnviarEmailService } from './blucake-services/enviar-email';
 import { MessageService } from './blucake-services/MessageService';
 import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-enviar-email.component';
+import { DataTablesModule } from 'angular-datatables';
+import { ReceitaService } from './blucake-services/receita.service';
+import { BlucakeReceitasDetalheComponent } from './blucake-receitas/blucake-receitas-detalhe/blucake-receitas-detalhe.component';
+import { BlucakeListBoxModule } from './blucake-listbox/blucake-listbox.module';
+
 
 @NgModule({
   declarations: [
@@ -39,7 +46,8 @@ import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-envi
     BlucakeReceitasComponent,
     BlucakeIngredientesComponent,
     BlucakeHomeDetalheComponent,
-    BlucakeEnviarEmailComponent
+    BlucakeEnviarEmailComponent,
+    BlucakeReceitasDetalheComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +55,11 @@ import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-envi
     BlucakeRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    DataTablesModule,
+    DualListBoxModule.forRoot(),
+    AngularDualListBoxModule,
+    BlucakeListBoxModule
       ],
   providers: [LoginService,
               StorageService,
@@ -58,7 +70,8 @@ import { BlucakeEnviarEmailComponent } from './blucake-enviar-email/blucake-envi
               IngredienteService,
               BluCakeService,
               EnviarEmailService,
-              MessageService
+              MessageService,
+              ReceitaService
             ],
   bootstrap: [AppComponent]
 })
