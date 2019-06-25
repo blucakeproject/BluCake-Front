@@ -5,6 +5,7 @@ import { BlucakeUsuarioComponent } from '../blucake-usuario/blucake-usuario.comp
 import { AuthGuard } from '../guard/auth.guard';
 import { BlucakeReceitasComponent } from '../blucake-receitas/blucake-receitas.component';
 import { BlucakeIngredientesComponent } from '../blucake-ingredientes/blucake-ingredientes.component';
+import { BlucakeReceitasDetalheComponent } from '../blucake-receitas/blucake-receitas-detalhe/blucake-receitas-detalhe.component';
 
 
 
@@ -12,7 +13,8 @@ const routes: Routes = [
   {path: 'home', component: BlucakeHomeComponent},
   {path: 'usuario', component: BlucakeUsuarioComponent, canActivate: [AuthGuard]},
   {path: 'receitas', component: BlucakeReceitasComponent, canActivate: [AuthGuard]},
-  {path: 'ingredientes', component: BlucakeIngredientesComponent, canActivate: [AuthGuard]}, 
+  {path: 'receitasDetalhe', component: BlucakeReceitasDetalheComponent, canActivate: [AuthGuard]},
+  {path: 'ingredientes', component: BlucakeIngredientesComponent, canActivate: [AuthGuard]},
   {path: '', redirectTo: '/home', pathMatch: 'full' },
   {path: '**', redirectTo: '/home'}
 ];

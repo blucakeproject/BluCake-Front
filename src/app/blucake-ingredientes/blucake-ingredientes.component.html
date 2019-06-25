@@ -18,7 +18,7 @@
         <div class="input-group">
           <input type="text" class="form-control" id="txtAdicionaIngrediente" placeholder="Novo Ingrediente"
             formControlName="nome">
-          
+
           <span class="input-group-btn">
             <button type="button" class="btn btn-default" (click)='salvar()'><i class="fa fa-plus"></i></button>
           </span>
@@ -26,32 +26,24 @@
       </form>
       <br><br>
     </div>
-
-
     <div class="col-xs-12">
-      <table id="table-lista-ingredientes" class="table table-condensed table-responsive">
+      <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
         <thead>
           <tr>
-            <th>Ingrediente</th>
+            <th style="width: 100%">Ingrediente</th>
             <th>Ações</th>
           </tr>
         </thead>
-        <tr *ngFor="let rec of records | paginate: { itemsPerPage: 5, currentPage: paginaAtual };">
-          <td>{{rec.nome}}</td>
-          <td>
-            <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
-          </td>
-        </tr>
+
+        <tbody>               
+           <tr *ngFor="let rec of records"> 
+            <td>{{rec.nome}}</td> 
+            <td>
+              <button class="btn btn-default no-border" (click)="removerIngredientes(rec)"><i class="fa fa-trash"></i></button>
+            </td>
+          </tr> 
+        </tbody>
       </table>
-      <div class="row">
-          <div class="col-xs-4">             
-            </div>
-          <div class="col-xs-4">
-             <pagination-controls class="my-pagination" (pageChange)="paginaAtual = $event" responsive="true"></pagination-controls>
-           </div>
-           <div class="col-xs-4">             
-            </div>
-      </div>
     </div>
   </div>
   <br><br>
