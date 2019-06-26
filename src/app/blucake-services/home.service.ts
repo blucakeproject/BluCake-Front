@@ -15,4 +15,9 @@ export class HomeService {
             `${API_CONFIG.baseUrl}/home`);
     }
 
+    buscarMenorPreco(): Observable<ResponseDTO> {
+        return this.http.get<ResponseDTO>(
+            `${API_CONFIG.baseUrl}/home`);
+    }
+
 }
