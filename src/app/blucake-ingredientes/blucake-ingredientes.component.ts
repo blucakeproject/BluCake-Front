@@ -47,8 +47,6 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
     };
   }
 
-
-
   criarForm() {
     this.formularioIngrediente = this.formBuilder.group({
       id: [null],
@@ -100,12 +98,17 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
       usuarioId: rec.usuario.id,
       dataCadastro: null
     };
+    this.mensagem = "Não foi possível Remover! Receitas possuem este Ingrediente."
     this.ingredienteService.deletarIngrediente(ingredienteDTO).subscribe(ret => {
       this.ativarIngredientes(false);
-      if (ret.data == true) {
-        this.mensagem = "Ingrediente adicionado com sucesso!"
-      } else {
-        this.mensagem = "Este Ingrediente ja existe!"
+
+      switch (ret.data) {
+        case true:
+          this.mensagem = "Ingrediente removido com sucesso!"
+          break;
+        case false:
+          this.mensagem = "Não foi possível Remover! Receitas possuem este Ingrediente."
+          break;
       }
     });
 
@@ -122,10 +125,6 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
       // Call the dtTrigger to rerender again
       this.dtTrigger.next();
     });
-  }
-
-  get nome() {
-    return this.formularioIngrediente.get('nome');
   }
 
 }
