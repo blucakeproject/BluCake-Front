@@ -5,35 +5,17 @@
       <img src="../../assets/Banner.png" width="100%">
     </div>
 
+    
+
     <div class="col-xs-12 col-md-2">
       <!-- <form> -->
       <div class="row">
         <div class="col-md-12 col-sm-3 form-group">
           <input type="text" class="form-control" id="txtBuscaGeral" placeholder="Descrição"
             (input)="filtroDigital($event.currentTarget.value)">
+            <a (click)="filtrarMenorPreco()">Menor preço</a>
+            <a (click)="filtrarMaiorPreco()">Maior preço</a>
         </div>
-
-        <div class="col-md-12 col-sm-3 form-group">
-          <h5>Ordenar por</h5>
-          <select  class="form-control"  title="Ordenar por" placeholder="Descrição">
-            <option></option>
-            <option>Maior preço</option>
-            <option>Menor preço</option>
-          </select>
-        </div>
-
-
-        <div class="col-md-12 col-sm-3 form-group">
-          <select  class="form-control"  title="Classificação do Bolo">
-            <option>Diet</option>
-            <option>Light</option>
-            <option>Vegetariana</option>
-            <option>Vegana</option>
-            <option>Sem Glúten</option>
-            <option>Sem Lactose</option>
-          </select>
-        </div>
-
       </div>
       <!-- </form> -->
     </div>

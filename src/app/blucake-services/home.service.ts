@@ -17,7 +17,12 @@ export class HomeService {
 
     buscarMenorPreco(): Observable<ResponseDTO> {
         return this.http.get<ResponseDTO>(
-            `${API_CONFIG.baseUrl}/home`);
+            `${API_CONFIG.baseUrl}/home/menorPreco`);
+    }
+
+    buscarMaiorPreco(): Observable<ResponseDTO> {
+        return this.http.get<ResponseDTO>(
+            `${API_CONFIG.baseUrl}/home/maiorPreco`);
     }
 
 }
