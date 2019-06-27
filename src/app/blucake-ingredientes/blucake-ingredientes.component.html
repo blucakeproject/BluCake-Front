@@ -20,8 +20,13 @@
             formControlName="nome">
 
           <span class="input-group-btn">
-            <button type="button" class="btn btn-default" (click)='salvar()'><i class="fa fa-plus"></i></button>
+            <button type="button" class="btn btn-default" (click)='salvar()'>
+              <i class="fa fa-plus"></i>
+            </button>
           </span>
+        </div>
+        <div class="font-weight-bold msgColor">
+          {{ mensagem }}
         </div>
       </form>
       <br><br>
@@ -35,13 +40,14 @@
           </tr>
         </thead>
 
-        <tbody>               
-           <tr *ngFor="let rec of records"> 
-            <td>{{rec.nome}}</td> 
+        <tbody>
+          <tr *ngFor="let rec of records">
+            <td>{{rec.nome}}</td>
             <td>
-              <button class="btn btn-default no-border" (click)="removerIngredientes(rec)"><i class="fa fa-trash"></i></button>
+              <button class="btn btn-default no-border" (click)="removerIngredientes(rec)"><i
+                  class="fa fa-trash"></i></button>
             </td>
-          </tr> 
+          </tr>
         </tbody>
       </table>
     </div>
