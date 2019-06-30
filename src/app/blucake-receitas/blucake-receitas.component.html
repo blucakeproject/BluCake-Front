@@ -18,18 +18,22 @@
             <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                 <thead>
                     <tr>
-                        <th style="width: 100%">Receita</th>
-                        <th>Editar</th>
-                        <th>Excluir</th>
+                        <th style="width: 30%; text-align: center;">Receita</th>
+                        <th style="width: 15%; text-align: center;">Preco</th>
+                        <th style="width: 35%; text-align: center;">Data Cadastro</th>
+                        <th style="text-align: center;">Editar</th>
+                        <th style="text-align: center;">Excluir</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr  *ngFor="let rec of records">
-                        <td>Bolo de chocolate</td>
-                        <td>
+                        <td style="text-align: center;">{{rec.nome}}</td>
+                        <td style="text-align: center;">{{rec.preco}}</td>
+                        <td style="text-align: center;">{{rec.dataCadastro}}</td>
+                        <td style="text-align: center;">
                             <button class="btn btn-default no-border" (click)="edtarReceita(rec)"><i class="fa fa-edit"></i></button>
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
                         </td>
                     </tr>

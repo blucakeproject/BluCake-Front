@@ -1,6 +1,6 @@
 import { StorageService } from './../../blucake-services/storage.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BluCakeService } from 'src/app/blucake-services/blucake.service';
 import { ReceitaDTO } from 'src/app/blucake-models/receitaDTO';
 import { IngredienteDTO } from 'src/app/blucake-models/ingredienteDTO';
@@ -57,8 +57,8 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
   criarForm() {
     this.formularioReceita = this.formBuilder.group({
       id: [null],
-      nome: [null],
-      preco: [null],
+      nome: [null, Validators.compose([Validators.required])],
+      preco: [null, Validators.compose([Validators.required])],
       ativo: [null],
       descricao: [null]
     });
