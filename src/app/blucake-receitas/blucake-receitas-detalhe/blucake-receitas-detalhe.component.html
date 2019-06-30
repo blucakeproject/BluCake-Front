@@ -1,4 +1,5 @@
 <div id="corpo" class="container">
+   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
   <div class="page-header">
     <h2>Cadastro de Receita</h2>
   </div>
@@ -67,16 +68,16 @@
           </div>
         </div>
       </div>
-      <div class="col-xs-12 col-md-5">
+      <div class="col-xs-12 col-md-5">         
         <div id="foto-receita" class="well" style="height: 325px">
           <img src="{{imagem}}">
         </div>
         <h3 class="lead">
           <label class="fileContainer">
-            <button class="btn btn-primary default no-border">Carregar Imagem
+            <button class="btn btn-primary default no-border" >Carregar Imagem
               <i class="fas fa-upload"></i>
             </button>
-            <input type="file" />
+            <input type="file"  (change)="selectFile($event)"/>
           </label>
         </h3>
       </div>
