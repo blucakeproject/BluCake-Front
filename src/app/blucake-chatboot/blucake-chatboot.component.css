@@ -1,9 +1,10 @@
 .modal.right .modal-dialog {
     position: fixed;
-    margin: auto;
+     
     width: 320px;
-    height: 100%;
-    top: 500px;
+    max-width: 100%;
+    /* height: 100%; */
+    /* top: 500px; */
     -webkit-transform: translate3d(0%, 0, 0);
         -ms-transform: translate3d(0%, 0, 0);
          -o-transform: translate3d(0%, 0, 0);
@@ -12,7 +13,7 @@
 
 
 .modal.right.fade .modal-dialog {
-    right: 320px;
+    
     -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
        -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
          -o-transition: opacity 0.3s linear, right 0.3s ease-out;
@@ -20,18 +21,50 @@
 }
 
 .modal.right.fade.in .modal-dialog {
-    right: 100px;
+    right: 70px;
+    bottom: 70px;
 }
 
 /* ----- MODAL STYLE ----- */
 .modal-content {
     border-radius: 0;
-    border: none;  
+    border: none;   
 }
 
-
-.modal-body{
-    height:  300px;
+.modal-body iframe {
+    border: none!important;
+    height: 350px;
 }
 
+@media screen and (max-width: 600px) {
+    .modal.right.fade.in .modal-dialog {
+        right: 10px;
+        bottom: 10px;
+    }
+    div.chat-column {
+        padding-top: 0!important;
+    }
+}
 
+.chat-column {
+    padding-top: 0!important;
+}
+
+#btnChamaModalChat {
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:#337ab7;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;box-shadow: 1px 1px 2px #888;
+    z-index:1000;
+    transition: box-shadow .2s;
+    cursor: pointer;
+}
+#btnChamaModalChat:hover {
+    box-shadow: 0px 3px 7px black;
+}
