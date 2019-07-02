@@ -40,4 +40,23 @@ export class BlucakeHomeComponent implements OnInit {
     this.stringFiltro = str;
        this.ativarTabela();
   }
+
+  filtrarMenorPreco() {
+    this.homeService.buscarMenorPreco().subscribe(res => {
+      this.records = res.data;
+      if(this.stringFiltro){
+        this.records = this.records.filter(items => items.nome.includes(this.stringFiltro));
+      }
+    });
+  }
+
+  filtrarMaiorPreco(){
+    this.homeService.buscarMaiorPreco().subscribe(res => {
+      this.records = res.data;
+      if(this.stringFiltro){
+        this.records = this.records.filter(items => items.nome.includes(this.stringFiltro));
+      }
+    });
+  }
+
 }
