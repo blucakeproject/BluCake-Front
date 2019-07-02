@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, AfterViewInit } from '@angular
 import { IngredienteService } from '../blucake-services/ingredientes.service';
 import { Router } from '@angular/router';
 import { BluCakeService } from '../blucake-services/blucake.service';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { IngredienteDTO } from '../blucake-models/ingredienteDTO';
 import { StorageService } from '../blucake-services/storage.service';
 import { Subject } from 'rxjs';
@@ -28,6 +28,8 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
 
   records;
 
+  mensagem;
+
   constructor(private ingredienteService: IngredienteService,
     private router: Router,
     private bluCakeService: BluCakeService,
@@ -45,14 +47,13 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
     };
   }
 
-
-
   criarForm() {
     this.formularioIngrediente = this.formBuilder.group({
       id: [null],
-      nome: [null],
+      nome: [null, Validators.compose([Validators.required])],
       usuarioId: [null]
     });
+
   }
 
   ativarIngredientes(render: Boolean) {
@@ -73,10 +74,21 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
       usuarioId: this.storageService.getLocalUser().usuario.id,
       dataCadastro: null
     };
+    this.mensagem = 'Informe um ingrediente!';
     this.ingredienteService.addIngrediente(ingredienteDTO).subscribe(ret => {
       this.criarForm();
       this.ativarIngredientes(false);
+
+      switch (ret.data) {
+        case true:
+          this.mensagem = 'Ingrediente adicionado com sucesso!';
+          break;
+        case false:
+          this.mensagem = 'Este Ingrediente ja existe!';
+          break;
+      }
     });
+
   }
 
   removerIngredientes(rec) {
@@ -86,9 +98,20 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
       usuarioId: rec.usuario.id,
       dataCadastro: null
     };
+    this.mensagem = 'Não foi possível Remover! Receitas possuem este Ingrediente.';
     this.ingredienteService.deletarIngrediente(ingredienteDTO).subscribe(ret => {
       this.ativarIngredientes(false);
+
+      switch (ret.data) {
+        case true:
+          this.mensagem = 'Ingrediente removido com sucesso!';
+          break;
+        case false:
+          this.mensagem = 'Não foi possível Remover! Receitas possuem este Ingrediente.';
+          break;
+      }
     });
+
   }
 
   ngOnDestroy(): void {
@@ -103,4 +126,5 @@ export class BlucakeIngredientesComponent implements OnInit, OnDestroy {
       this.dtTrigger.next();
     });
   }
+
 }

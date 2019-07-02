@@ -21,8 +21,6 @@ export class BlucakeReceitasComponent implements OnInit, OnDestroy {
 
   dtTrigger: Subject<any> = new Subject();
 
-  formularioIngrediente: FormGroup;
-
   records;
 
   constructor(private receitaService: ReceitaService,
