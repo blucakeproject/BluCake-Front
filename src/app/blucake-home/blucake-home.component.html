@@ -11,10 +11,13 @@
       <!-- <form> -->
       <div class="row">
         <div class="col-md-12 col-sm-3 form-group">
+          <h5>Filtros: </h5>
           <input type="text" class="form-control" id="txtBuscaGeral" placeholder="Descrição"
             (input)="filtroDigital($event.currentTarget.value)">
-            <a (click)="filtrarMenorPreco()">Menor preço</a>
-            <a (click)="filtrarMaiorPreco()">Maior preço</a>
+            <h5>Ordenar por: </h5>  
+          <a (click)="filtrarMenorPreco()">Menor preço</a>
+          <br>
+          <a (click)="filtrarMaiorPreco()">Maior preço</a>
         </div>
       </div>
       <!-- </form> -->
