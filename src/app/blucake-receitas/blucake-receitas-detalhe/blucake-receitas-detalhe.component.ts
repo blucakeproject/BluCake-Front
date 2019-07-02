@@ -8,6 +8,9 @@ import { IngredienteService } from 'src/app/blucake-services/ingredientes.servic
 import { Router } from '@angular/router';
 import { ReceitaService } from 'src/app/blucake-services/receita.service';
 
+import { UploadFileService } from './../../blucake-services/uploadFileService ';
+
+
 @Component({
   selector: 'app-blucake-receitas-detalhe',
   templateUrl: './blucake-receitas-detalhe.component.html',
@@ -23,14 +26,19 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
   listaClassificacaoReceita: any[] = [];
   imagem: String;
 
+  selectedFiles: FileList;
+
   todosIngreditentes: IngredienteDTO[] = [];
+
+  public loading = false;
 
   constructor(private formBuilder: FormBuilder,
     private bluCakeService: BluCakeService,
     private ingredienteService: IngredienteService,
     private router: Router,
     private storageService: StorageService,
-    private receitaService: ReceitaService) { }
+    private receitaService: ReceitaService,
+    private uploadFileService: UploadFileService) { }
 
   ngOnInit() {
     this.criarForm();
@@ -107,7 +115,7 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
       nome: this.formularioReceita.value.nome,
       descricao: this.formularioReceita.value.descricao,
       preco: this.formularioReceita.value.preco,
-      imagem: this.formularioReceita.value.imagem,
+      imagem: this.imagem,
       dataCadastro: this.formularioReceita.value.dataCadastro || null,
       ativo: this.formularioReceita.value.ativo,
       ingredienteReceitas: this.listaIngedientesReceita,
@@ -117,5 +125,19 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
     this.receitaService.addReceita(receitaDTO).subscribe(ret => {
       this.cancelarCadastro();
     });
+  }
+
+  upload() {
+    this.loading = true;
+    const file = this.selectedFiles.item(0);
+    this.uploadFileService.uploadfile(file).then(ret => {
+      this.imagem = ret;
+      this.loading = false;
+    });
+  }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+    this.upload();
   }
 }

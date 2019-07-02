@@ -1,4 +1,3 @@
-import { IngredienteService } from './blucake-services/ingredientes.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -24,6 +23,7 @@ import { AuthInterceptor } from './interceptors.ts/auht.interceptors';
 import { HomeService } from './blucake-services/home.service';
 import { BlucakeReceitasComponent } from './blucake-receitas/blucake-receitas.component';
 import { BlucakeIngredientesComponent } from './blucake-ingredientes/blucake-ingredientes.component';
+import { IngredienteService } from './blucake-services/ingredientes.service';
 
 import { BluCakeService } from './blucake-services/blucake.service';
 import { BlucakeHomeDetalheComponent } from './blucake-home/blucake-home-detalhe/blucake-home-detalhe.component';
@@ -34,6 +34,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { ReceitaService } from './blucake-services/receita.service';
 import { BlucakeReceitasDetalheComponent } from './blucake-receitas/blucake-receitas-detalhe/blucake-receitas-detalhe.component';
 import { BlucakeListBoxModule } from './blucake-listbox/blucake-listbox.module';
+import { UploadFileService } from './blucake-services/uploadFileService ';
+import { NgxLoadingModule, ngxLoadingAnimationTypes } from 'ngx-loading';
+import { BlucakeChatbootComponent } from './blucake-chatboot/blucake-chatboot.component';
 
 
 @NgModule({
@@ -47,7 +50,8 @@ import { BlucakeListBoxModule } from './blucake-listbox/blucake-listbox.module';
     BlucakeIngredientesComponent,
     BlucakeHomeDetalheComponent,
     BlucakeEnviarEmailComponent,
-    BlucakeReceitasDetalheComponent
+    BlucakeReceitasDetalheComponent,
+    BlucakeChatbootComponent
   ],
   imports: [
     BrowserModule,
@@ -59,20 +63,22 @@ import { BlucakeListBoxModule } from './blucake-listbox/blucake-listbox.module';
     DataTablesModule,
     DualListBoxModule.forRoot(),
     AngularDualListBoxModule,
-    BlucakeListBoxModule
-      ],
+    BlucakeListBoxModule,
+    NgxLoadingModule.forRoot({})
+  ],
   providers: [LoginService,
-              StorageService,
-              UsuarioService,
-              AuthGuard,
-              { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-              HomeService,
-              IngredienteService,
-              BluCakeService,
-              EnviarEmailService,
-              MessageService,
-              ReceitaService
-            ],
+    StorageService,
+    UsuarioService,
+    AuthGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    HomeService,
+    IngredienteService,
+    BluCakeService,
+    EnviarEmailService,
+    MessageService,
+    ReceitaService,
+    UploadFileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
