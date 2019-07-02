@@ -49,3 +49,22 @@
 .chat-column {
     padding-top: 0!important;
 }
+
+#btnChamaModalChat {
+    position:fixed;
+    width:60px;
+    height:60px;
+    bottom:40px;
+    right:40px;
+    background-color:#337ab7;
+    color:#FFF;
+    border-radius:50px;
+    text-align:center;
+    font-size:30px;box-shadow: 1px 1px 2px #888;
+    z-index:1000;
+    transition: box-shadow .2s;
+    cursor: pointer;
+}
+#btnChamaModalChat:hover {
+    box-shadow: 0px 3px 7px black;
+}
