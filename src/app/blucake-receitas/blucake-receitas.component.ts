@@ -38,7 +38,7 @@ export class BlucakeReceitasComponent implements OnInit, OnDestroy {
   }
 
   ativarReceitas(render: Boolean) {
-    this.receitaService.buscarReceitas().subscribe(ret => {
+    this.receitaService.buscarReceitasUsuario().subscribe(ret => {
       this.records = ret.data;
       if (render) {
         this.dtTrigger.next();

@@ -5,14 +5,20 @@ import { ResponseDTO } from '../blucake-models/responseDTO';
 import { API_CONFIG } from '../config/api.config';
 import { UsuarioDTO } from '../blucake-models/usuarioDTO';
 import { ReceitaDTO } from '../blucake-models/receitaDTO';
+import { StorageService } from './../blucake-services/storage.service';
 
 @Injectable()
 export class ReceitaService {
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient,
+        private storageService: StorageService,) { }
 
     buscarReceitas(): Observable<ResponseDTO> {
         return this.http.get<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`);
+    }
+
+    buscarReceitasUsuario(): Observable<ResponseDTO> {
+        return this.http.get<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas/${this.storageService.getLocalUser().usuario.id}`);
     }
 
     addReceita(receita: ReceitaDTO): Observable<ResponseDTO> {
@@ -20,7 +26,7 @@ export class ReceitaService {
     }
 
     atualizarReceita(receita: ReceitaDTO): Observable<ResponseDTO> {
-        return this.http.put<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`, receita);
+        return this.http.post<ResponseDTO>(`${API_CONFIG.baseUrl}/receitas`, receita);
     }
 
 }

@@ -116,10 +116,10 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
       descricao: this.formularioReceita.value.descricao,
       preco: this.formularioReceita.value.preco,
       imagem: this.imagem,
-      dataCadastro: this.formularioReceita.value.dataCadastro || null,
+      dataCadastro: this.receitaSelecionada.dataCadastro || null,
       ativo: this.formularioReceita.value.ativo,
       ingredienteReceitas: this.listaIngedientesReceita,
-      usuarioId: this.storageService.getLocalUser().usuario.id,
+      usuario: this.storageService.getLocalUser().usuario,
       classificacao: this.listaClassificacaoReceita
     };
     this.receitaService.addReceita(receitaDTO).subscribe(ret => {
