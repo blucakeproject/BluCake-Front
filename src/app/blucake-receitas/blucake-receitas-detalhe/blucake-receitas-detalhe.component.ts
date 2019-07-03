@@ -71,6 +71,7 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
       this.formularioReceita.controls.preco.setValue(this.receitaSelecionada.preco);
       this.formularioReceita.controls.ativo.setValue(this.receitaSelecionada.ativo || 'S');
       this.formularioReceita.controls.descricao.setValue(this.receitaSelecionada.descricao);
+      this.formularioReceita.controls.dataCadastro.setValue(this.receitaSelecionada.dataCadastro);
 
       // Lista ingredientes
       this.listaIngedientesReceita = this.receitaSelecionada.ingredienteReceitas || [];
@@ -119,7 +120,7 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
       dataCadastro: this.formularioReceita.value.dataCadastro || null,
       ativo: this.formularioReceita.value.ativo,
       ingredienteReceitas: this.listaIngedientesReceita,
-      usuarioId: this.storageService.getLocalUser().usuario.id,
+      usuario: this.storageService.getLocalUser().usuario,
       classificacao: this.listaClassificacaoReceita
     };
     this.receitaService.addReceita(receitaDTO).subscribe(ret => {
