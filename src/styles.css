@@ -1,3 +1,9 @@
 .no-border {
     border: none !important;
-  }
+}
+
+textarea {
+    resize: vertical;
+    max-height: 300px;
+    max-width: 100%;
+}
