@@ -1,5 +1,5 @@
 <div id="corpo" class="container">
-   <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
+  <ngx-loading [show]="loading" [config]="{ backdropBorderRadius: '3px' }"></ngx-loading>
   <div class="page-header">
     <h2>Cadastro de Receita</h2>
   </div>
@@ -9,7 +9,8 @@
         <div class="row">
           <div class="form-group col-xs-12 col-md-8">
             <label for="txtNomeReceita">Nome da Receita</label>
-            <input type="text" class="form-control" id="nomeReceita" placeholder="Bolo de ..." formControlName="nome" required>
+            <input type="text" class="form-control" id="nomeReceita" placeholder="Bolo de ..." formControlName="nome"
+              required>
           </div>
           <div class="form-group col-xs-12 col-md-4">
             <label for="txtNomeReceita">Preço</label>
@@ -22,12 +23,13 @@
               Ativa</label>
           </div>
         </div>
-        <div class="form-group">
-          <label for="txtDescricaoReceita">Breve descrição</label>
-          <textarea id="txtDescricaoReceita" class="form-control" placeholder="Escreva uma breve descrição"
-            formControlName="descricao"></textarea>
-        </div>
         <div class="row">
+          <div class="form-group col-xs-12 col-md-6">
+            <label for="txtDescricaoReceita">Breve descrição</label>
+            <textarea id="txtDescricaoReceita" class="form-control" placeholder="Escreva uma breve descrição"
+              formControlName="descricao"></textarea>
+          </div>
+
           <div class="form-group col-xs-12 col-md-6">
             <div class="panel panel-primary">
               <div class="panel-heading">
@@ -47,37 +49,19 @@
               </div>
             </div>
           </div>
-          <div class="form-group col-xs-12 col-md-6">
-            <div class="panel panel-primary">
-              <div class="panel-heading">
-                <h3 class="panel-title"><i class="fa fa-list"></i> Classificação
-                  <button type="button" class="btn btn-xs btn-default no-border pull-right" data-toggle="modal"
-                    data-target="#modal-classificacoes" role="button">
-                    Selecionar
-                  </button>
-                </h3>
-              </div>
-              <div class="panel-body">
-                <ul>
-                  <ng-template ngFor let-rec [ngForOf]="listaClassificacaoReceita">
-                    <li>{{rec.nome}}</li>
-                  </ng-template>
-                </ul>
-              </div>
-            </div>
-          </div>
+
         </div>
       </div>
-      <div class="col-xs-12 col-md-5">         
+      <div class="col-xs-12 col-md-5">
         <div id="foto-receita" class="well" style="height: 325px">
           <img src="{{imagem}}">
         </div>
         <h3 class="lead">
           <label class="fileContainer">
-            <button class="btn btn-primary default no-border" >Carregar Imagem
+            <button class="btn btn-primary default no-border">Carregar Imagem
               <i class="fas fa-upload"></i>
             </button>
-            <input type="file"  (change)="selectFile($event)"/>
+            <input type="file" (change)="selectFile($event)" />
           </label>
         </h3>
       </div>
@@ -89,7 +73,7 @@
         <br>
         <br>
       </div>
-     </form>
+    </form>
   </div>
 </div>
 

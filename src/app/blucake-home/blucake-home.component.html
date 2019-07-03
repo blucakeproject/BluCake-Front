@@ -1,11 +1,10 @@
 <div id="corpo" class="container-fluid">
   <div class="row">
 
-    <div class="col-xs-12">
-      <img src="../../assets/Banner.png" width="100%">
-    </div>
+    <div class="col-xs-12" style="padding: 0">
 
-    
+      <img src="../../assets/Banner.png" style="max-width:  100%">
+    </div>
 
     <div class="col-xs-12 col-md-2">
       <!-- <form> -->
@@ -14,7 +13,7 @@
           <h5>Filtros: </h5>
           <input type="text" class="form-control" id="txtBuscaGeral" placeholder="Descrição"
             (input)="filtroDigital($event.currentTarget.value)">
-            <h5>Ordenar por: </h5>  
+          <h5>Ordenar por: </h5>
           <a (click)="filtrarMenorPreco()">Menor preço</a>
           <br>
           <a (click)="filtrarMaiorPreco()">Maior preço</a>
@@ -35,21 +34,22 @@
             </div>
 
             <div class="caption">
-              <h3>{{rec.nome}}</h3>
-              <span class="lead label label-success">{{rec.preco | currency:'BRL':true:'1.2-2'}}</span>
+              <h3 style="margin-bottom: 10px">{{rec.nome}}</h3>
+              <span class="lead label label-success" style="font-size: 18px">{{rec.preco | currency:'BRL':true:'1.2-2'}}</span>
               <br>
               <br>
               <div class="text-center">
                 <div>
-                  <button type="button" class="btn btn-default no-border" (click)="boloSelecionado(rec)" data-toggle="modal"
-                    data-target="#modal-detalhes-1" role="button"><i class="fa fa-list"></i>Detalhes</button>
+                  <button type="button" class="btn btn-default no-border" (click)="boloSelecionado(rec)"
+                    data-toggle="modal" data-target="#modal-detalhes-1" role="button"><i
+                      class="fa fa-list"></i>Detalhes</button>
 
-                    <button type="button" class="btn btn-default no-border" data-toggle="modal" data-target="#modal-contato-confeiteiro"
-                    role="button" (click)="boloSelecionado(rec)">
+                  <button type="button" class="btn btn-default no-border" data-toggle="modal"
+                    data-target="#modal-contato-confeiteiro" role="button" (click)="boloSelecionado(rec)">
                     Contato
                     <i class="fa fa-envelope"></i>
                   </button>
-                 
+
                 </div>
               </div>
             </div>
@@ -63,10 +63,3 @@
 <app-blucake-home-detalhe></app-blucake-home-detalhe>
 
 <app-blucake-enviar-email></app-blucake-enviar-email>
-
-
-
-
-
-
-
