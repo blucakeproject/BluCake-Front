@@ -110,13 +110,20 @@ export class BlucakeReceitasDetalheComponent implements OnInit {
   }
 
   salvarNovaReceita(id) {
+    var dataCadastro;
+    if (this.receitaSelecionada) {
+      dataCadastro = this.receitaSelecionada.dataCadastro
+    }else{
+      dataCadastro = null
+    }
     const receitaDTO: ReceitaDTO = {
       id: id,
       nome: this.formularioReceita.value.nome,
       descricao: this.formularioReceita.value.descricao,
       preco: this.formularioReceita.value.preco,
       imagem: this.imagem,
-      dataCadastro: this.receitaSelecionada.dataCadastro || null,
+
+      dataCadastro: dataCadastro,
       ativo: this.formularioReceita.value.ativo,
       ingredienteReceitas: this.listaIngedientesReceita,
       usuario: this.storageService.getLocalUser().usuario,
