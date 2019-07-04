@@ -26,12 +26,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr  *ngFor="let rec of records">
+                    <tr *ngFor="let rec of records">
                         <td style="text-align: center;">{{rec.nome}}</td>
                         <td style="text-align: center;">{{rec.preco}}</td>
                         <td style="text-align: center;">{{rec.dataCadastro | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
                         <td style="text-align: center;">
-                            <button class="btn btn-default no-border" (click)="edtarReceita(rec)"><i class="fa fa-edit"></i></button>
+                            <button class="btn btn-default no-border" (click)="edtarReceita(rec)"><i
+                                    class="fa fa-edit"></i></button>
                         </td>
                         <!--<td style="text-align: center;">
                             <button class="btn btn-default no-border"><i class="fa fa-trash"></i></button>
