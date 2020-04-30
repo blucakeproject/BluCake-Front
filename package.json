@@ -29,7 +29,7 @@
     "datatables.net": "^1.10.19",
     "datatables.net-dt": "^1.10.19",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "ng2-dual-list-box": "^1.2.1",
     "ngx-loading": "^3.0.1",
     "ngx-pagination": "^3.2.1",
